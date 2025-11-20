@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: poubelle-detection
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn poubelle_app.wsgi:application"
+    autoDeploy: true
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: poubelle_app.settings
+      - key: DJANGO_SECRET_KEY
+        value: "change-me-to-a-secret-key"

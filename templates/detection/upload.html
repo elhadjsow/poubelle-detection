@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+    body {
+        background: radial-gradient(circle at top, #90e0ef, #0077b6 60%, #023e8a);
+        min-height: 100vh;
+        padding-top: 60px;
+        font-family: "Poppins", sans-serif;
+        color: #fff;
+    }
+
+    /* --- Animated Neon Card --- */
+    .glass-card {
+        background: rgba(255, 255, 255, 0.18);
+        backdrop-filter: blur(15px);
+        border-radius: 20px;
+        padding: 35px;
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.25), 0 0 60px rgba(0, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        animation: zoomIn 0.9s ease-out;
+        transition: all 0.4s ease;
+    }
+
+    .glass-card:hover {
+        transform: scale(1.03);
+        box-shadow: 0 0 40px rgba(255, 255, 255, 0.35), 0 0 80px rgba(0, 255, 255, 0.3);
+    }
+
+    @keyframes zoomIn {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    /* ---- Titre animé ---- */
+    .title-animated {
+        font-size: 1.8rem;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 20px;
+        position: relative;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .title-animated i {
+        font-size: 2rem;
+        animation: float 2s infinite ease-in-out;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-6px); }
+        100% { transform: translateY(0); }
+    }
+
+    /* --- Zone upload stylisée --- */
+    .upload-box input {
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px dashed rgba(255, 255, 255, 0.6);
+        padding: 20px;
+        color: #fff;
+        border-radius: 12px;
+        width: 100%;
+        transition: 0.3s;
+    }
+
+    .upload-box input:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: #caf0f8;
+    }
+
+    /* --- Bouton Neo-Glow --- */
+    .btn-neon {
+        background: linear-gradient(135deg, #00eaff, #0096c7);
+        border: none;
+        color: #fff;
+        padding: 14px;
+        font-size: 1.2rem;
+        border-radius: 12px;
+        width: 100%;
+        margin-top: 15px;
+        font-weight: 600;
+        box-shadow: 0 0 10px rgba(0, 238, 255, 0.8), 0 0 20px rgba(0, 238, 255, 0.6);
+        transition: all 0.3s ease;
+    }
+
+    .btn-neon:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0 15px rgba(0, 238, 255, 1), 0 0 30px rgba(0, 238, 255, 0.9);
+    }
+
+</style>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="glass-card">
+
+                <div class="title-animated">
+                    <i class="bi bi-trash3-fill"></i><br>
+                    Détection de l’état d’une poubelle
+                </div>
+
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="upload-box mb-3">
+                        {% bootstrap_form form %}
+                    </div>
+
+                    <button type="submit" class="btn-neon">
+                        <i class="bi bi-cpu"></i> &nbsp; Analyser l’image
+                    </button>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
