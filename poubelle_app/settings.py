@@ -26,7 +26,14 @@ SECRET_KEY = "django-insecure-@%8l&zf1)efp^l8eh^x5#i1#c3nmlyqv*2a-hw*$-)6zc3h+!-
 DEBUG = True
 
 #ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ["poubelle-detection-1.onrender.com"]
+#ALLOWED_HOSTS = ["poubelle-detection-1.onrender.com"]
+
+ALLOWED_HOSTS = [
+    "poubelle-detection-1.onrender.com",
+    "127.0.0.1",
+    "localhost"
+]
+
 
 
 # Application definition
@@ -117,6 +124,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 
 STATIC_URL = "static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]

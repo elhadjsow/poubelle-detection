@@ -4,25 +4,23 @@ from .models import UploadedImage
 from django.conf import settings
 import os
 from PIL import Image as PilImage
-from ultralytics import YOLO
 import torch
+import gc
 
 MODEL_PATH = os.path.join(settings.BASE_DIR, 'model', 'poubelle_model.h5')
 
 
 # Ajout pour l'inférence YOLOv8
 def predict_image_yolo(img_path):
-    # Chargement du modèle YOLOv8 (en cache)
-    if not hasattr(predict_image_yolo, 'model'):
-        model_path = os.path.join(settings.BASE_DIR, 'model', 'poubelle_yolov8.pt')
-        predict_image_yolo.model = YOLO(model_path)
-    model = predict_image_yolo.model
-
-    # Inference YOLO
+    from ultralytics import YOLO  # Import local pour éviter de charger en global
+    model_path = os.path.join(settings.BASE_DIR, 'model', 'poubelle_yolov8.pt')
+    model = YOLO(model_path)
     results = model(img_path)
     boxes = results[0].boxes
     if len(boxes) == 0:
         # Aucun objet détecté
+        del model
+        gc.collect()
         return (0, 0, 0, 0), 'aucune détection', 0.0
     # On prend la première détection (score le plus élevé)
     box = boxes[0]
@@ -32,6 +30,8 @@ def predict_image_yolo(img_path):
     label = 'pleine' if label_id == 0 else 'vide'
     # Conversion bbox (x, y, w, h)
     w, h = x2 - x1, y2 - y1
+    del model
+    gc.collect()
     return (x1, y1, w, h), label, score
 
 
