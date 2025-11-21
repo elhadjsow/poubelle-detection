@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "detection",
-    "bootstrap5",  # Correction du nom du module Bootstrap
+    "django_bootstrap5",  # Correction du nom du module Bootstrap
 ]
 
 MIDDLEWARE = [
