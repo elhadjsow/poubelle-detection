@@ -25,7 +25,8 @@ SECRET_KEY = "django-insecure-@%8l&zf1)efp^l8eh^x5#i1#c3nmlyqv*2a-hw*$-)6zc3h+!-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["poubelle-detection-1.onrender.com"]
 
 
 # Application definition
