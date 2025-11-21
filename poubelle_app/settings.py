@@ -29,9 +29,11 @@ DEBUG = True
 #ALLOWED_HOSTS = ["poubelle-detection-1.onrender.com"]
 
 ALLOWED_HOSTS = [
-    "poubelle-detection-1.onrender.com",
-    "127.0.0.1",
-    "localhost"
+    'poubelle-detection-1.onrender.com',
+    'poubelle-detection-2.onrender.com',  # ← AJOUTEZ CELUI-CI
+    'localhost',
+    '127.0.0.1',
+    '.onrender.com'  # ← PERMET TOUS LES SOUS-DOMAINES RENDER
 ]
 
 
