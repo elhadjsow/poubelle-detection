@@ -1,9 +1,12 @@
-Django>=4.2
-ultralytics
-gunicorn
-djangorestframework
-django-crispy-forms
-django-widget-tweaks
-django-cors-headers
-numpy
-pillow
+# Requirements for Poubelle Detection Django app
+
+Django>=4.2,<5
+gunicorn>=20.1
+django-bootstrap5>=22.2
+Pillow>=10.0
+numpy>=1.25
+opencv-python>=4.8
+djangorestframework>=3.20
+requests>=2.31
+ultralytics>=8.0
+django-crispy-forms>=2.1
